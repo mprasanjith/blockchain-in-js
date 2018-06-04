@@ -1,10 +1,16 @@
 import Blockchain from "./Blockchain";
 import Block from "./Block";
 
-let fusecoin = new Blockchain();
-fusecoin.addBlock(new Block(1, "23/03/2018", { data: "Test Block 1" }));
-fusecoin.addBlock(new Block(2, "23/03/2018", { data: "Test Block 2" }));
-console.log(fusecoin.isChainValid());
+// create genesis block
+let genesisBlock = new Block();
+let blockchain = new Blockchain(genesisBlock);
 
-fusecoin.chain[1].data = { amount: 50 };
-console.log(fusecoin.isChainValid());
+
+let testData = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
+testData.forEach((data, index) => {
+  blockchain.pool = testData.slice(index);
+  blockchain.mineBlock(blockchain.pool);
+});
+
+blockchain.exploreBlocks();

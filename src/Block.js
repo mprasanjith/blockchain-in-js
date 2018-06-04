@@ -1,17 +1,17 @@
-import forge from 'node-forge';
-
 export default class Block {
-    constructor(index, timestamp, data, previousHash = '') {
-        this.index = index;
-        this.timestamp = timestamp;
-        this.previousHash = previousHash;
-        this.data = data;
-        this.hash = this.calculateHash();
-    }
+  constructor() {
+    this.index = 0;
+    this.previousHash = '';
+    this.entries = [];
+    this.nonce = 0;
+    this.hash = '';
+  }
 
-    calculateHash() {
-        let md = forge.md.sha256.create();
-        md.update(this.index + this.previousHash + this.timestamp + JSON.stringify(this.data).toString());
-        return md.digest().toHex();
-    }
+  get key() {
+    return JSON.stringify(this.entries) + this.index + this.previousHash + this.nonce;
+  }
+
+  addEntry(entry) {
+    this.entries.push(entry);
+  }
 }

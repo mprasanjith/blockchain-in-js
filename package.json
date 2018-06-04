@@ -10,7 +10,8 @@
   "author": "Madusha Prasanjith",
   "license": "MIT",
   "dependencies": {
-    "node-forge": "^0.7.4"
+    "node-forge": "^0.7.4",
+    "performance-now": "^2.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
